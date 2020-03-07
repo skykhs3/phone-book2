@@ -1,44 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
-import PhoneInfoList from'./components/PhoneInfoList' ;
+import PhoneInfoList from './components/PhoneInfoList';
 import PhoneForm from './components/PhoneForm';
-class App extends Component{
-  num=1;
-
-  state ={
-    information:[
+class App extends Component {
+  num = 1;
+  state = {
+    information: [
       {
-        name:'김현수',
-        phone:'01055775942',
-        id:0
+        name: '김현수',
+        phone: '01055775942',
+        id: 0
       }
     ],
-    keyword:''
+    keyword: ''
   }
-  handleCreate = (data)=>{
+  handleCreate = (data) => {
     console.log(data);
-    const{information}=this.state;
-    var tmp=data.phone.replace(/-/g,'');
-    var tmp2={...data,phone:tmp};
+    const { information } = this.state;
+    var tmp = data.phone.replace(/-/g, '');
+    var tmp2 = { ...data, phone: tmp };
     this.setState({
-      information:information.concat({id:this.num++,...tmp2})
+      information: information.concat({ id: this.num++, ...tmp2 })
     })
   }
-  handleRemove = (id)=>{
-    const{information}=this.state;
+  handleRemove = (id) => {
+    const { information } = this.state;
     this.setState({
-      information:information.filter(xy => xy.id != id)
+      information: information.filter(xy => xy.id != id)
     })
   }
-  handleChange =(e) =>{
+  handleChange = (e) => {
     this.setState({
-      keyword : e.target.value
+      keyword: e.target.value
     })
   }
-  handleUpdate = (id,data)=>{
-    const{information}=this.state;
-    var tmp=data.phone.replace(/-/g,'');
-    var tmp2={...data,phone:tmp};
+  handleUpdate = (id, data) => {
+    const { information } = this.state;
+    var tmp = data.phone.replace(/-/g, '');
+    var tmp2 = { ...data, phone: tmp };
     this.setState({
       information: information.map(
         info => id === info.id
@@ -47,22 +46,23 @@ class App extends Component{
       )
     })
   }
- 
-  render(){
 
-    return(
+  render() {
+
+    return (
       <div>
         <p >
-        <iframe width="560" height="315" src="https://www.youtube.com/embed?rel=0&start=1&end=55&loop=1&autoplay=1&playlist=zrtfbw11WNc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen ></iframe>
+
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/zrtfbw11WNc?rel=0&start=1&loop=1&autoplay=1&playlist=zrtfbw11WNc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen ></iframe>
         </p>
-      <input placeholder="검색할 이름을 입력하세요" onChange={this.handleChange} value={this.state.keyword}></input>
-       <PhoneForm onCreate={this.handleCreate }/> 
-      <PhoneInfoList 
-      data={this.state.information}
-      onRemove={this.handleRemove}
-      onUpdate={this.handleUpdate}
-      />
-      
+        <input placeholder="검색할 이름을 입력하세요" onChange={this.handleChange} value={this.state.keyword}></input>
+        <PhoneForm onCreate={this.handleCreate} />
+        <PhoneInfoList
+          data={this.state.information}
+          onRemove={this.handleRemove}
+          onUpdate={this.handleUpdate}
+        />
+
       </div>
     );
   }
