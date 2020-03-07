@@ -12,6 +12,7 @@ class PhoneInfo extends Component{
         name:'',
         phone:''
     }
+    //안녕하세요.
     shouldComponentUpdate(nextProps, nextState) {
         // 수정 상태가 아니고, info 값이 같다면 리렌더링 안함
         if (!this.state.editing  
