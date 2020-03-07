@@ -49,16 +49,19 @@ class App extends Component {
 
   render() {
 
+    const { information, keyword } = this.state;
+    const filteredList = information.filter(
+      info => info.name.indexOf(keyword) !== -1
+    );
     return (
       <div>
         <p >
-
           <iframe width="560" height="315" src="https://www.youtube.com/embed/zrtfbw11WNc?rel=0&start=1&loop=1&autoplay=1&playlist=zrtfbw11WNc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen ></iframe>
         </p>
         <input placeholder="검색할 이름을 입력하세요" onChange={this.handleChange} value={this.state.keyword}></input>
         <PhoneForm onCreate={this.handleCreate} />
         <PhoneInfoList
-          data={this.state.information}
+          data={filteredList}
           onRemove={this.handleRemove}
           onUpdate={this.handleUpdate}
         />

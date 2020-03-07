@@ -12,6 +12,16 @@ class PhoneInfo extends Component{
         name:'',
         phone:''
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        // 수정 상태가 아니고, info 값이 같다면 리렌더링 안함
+        if (!this.state.editing  
+            && !nextState.editing
+            && nextProps.infoProp === this.props.infoProp) {
+          return false;
+        }
+        // 나머지 경우엔 리렌더링함
+        return true;
+      }
     handleRemove=()=>{
         const{infoProp,onRemove}=this.props;
         onRemove(infoProp.id);
@@ -51,6 +61,7 @@ class PhoneInfo extends Component{
         }
     }
     render(){
+        console.log('render PhoneInfoList');
         const style={
             border:'1px solid black',
             padding:'8px',
