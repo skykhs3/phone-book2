@@ -4,6 +4,7 @@ import PhoneInfoList from'./components/PhoneInfoList' ;
 import PhoneForm from './components/PhoneForm';
 class App extends Component{
   num=1;
+
   state ={
     information:[
       {
@@ -11,7 +12,8 @@ class App extends Component{
         phone:'01055775942',
         id:0
       }
-    ]
+    ],
+    keyword:''
   }
   handleCreate = (data)=>{
     console.log(data);
@@ -28,6 +30,11 @@ class App extends Component{
       information:information.filter(xy => xy.id != id)
     })
   }
+  handleChange =(e) =>{
+    this.setState({
+      keyword : e.target.value
+    })
+  }
   handleUpdate = (id,data)=>{
     const{information}=this.state;
     var tmp=data.phone.replace(/-/g,'');
@@ -40,14 +47,15 @@ class App extends Component{
       )
     })
   }
+ 
   render(){
 
     return(
       <div>
         <p >
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/cUMT4pw0Q78?rel=0&start=1&end=55&loop=1&autoplay=1&playlist=cUMT4pw0Q78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen ></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed?rel=0&start=1&end=55&loop=1&autoplay=1&playlist=zrtfbw11WNc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen ></iframe>
         </p>
-
+      <input placeholder="검색할 이름을 입력하세요" onChange={this.handleChange} value={this.state.keyword}></input>
        <PhoneForm onCreate={this.handleCreate }/> 
       <PhoneInfoList 
       data={this.state.information}
