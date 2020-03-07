@@ -14,7 +14,7 @@ class App extends Component{
     ]
   }
   handleCreate = (data)=>{
-    console.log(data);
+   // console.log(data);
     const{information}=this.state;
     var tmp=data.phone.replace(/-/g,'');
     var tmp2={...data,phone:tmp};
